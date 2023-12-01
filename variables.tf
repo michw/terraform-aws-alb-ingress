@@ -162,6 +162,12 @@ variable "unauthenticated_paths" {
   description = "Unauthenticated path pattern to match (a maximum of 1 can be defined)"
 }
 
+variable "unauthenticated_source_ips" {
+  type = list(string)
+  default = []
+  description = "Unauthenticated list of source IP CIDR (max length: 4)"
+}
+
 variable "authenticated_paths" {
   type        = list(string)
   default     = []

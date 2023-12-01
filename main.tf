@@ -212,6 +212,15 @@ resource "aws_lb_listener_rule" "unauthenticated_hosts" {
       }
     }
   }
+
+  dynamic "condition" {
+    for_each = length(var.unauthenticated_source_ips) > 0 ? [""] : []
+    content {
+      source_ip {
+        values = var.unauthenticated_source_ips
+      }
+    }
+  }
 }
 
 resource "aws_lb_listener_rule" "authenticated_hosts_oidc" {
